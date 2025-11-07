@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🎄 My Christmas List</title>
+  <style>
+    body {
+      background: #f8f9fa;
+      font-family: Arial, sans-serif;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #006400;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .item {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: white;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+      transition: transform .3s, box-shadow .3s;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    .item img {
+      max-width: 200px;
+      width:100%;
+      object-fit: cover;
+    }
+    .item-content {
+      padding: 1rem;
+      flex: 1;
+      min-width: 200px;
+    }
+    .item-content h2 {
+      margin-top: 0;
+      font-size: 1.5rem;
+    }
+    .item-content p {
+      margin: .5rem 0;
+    }
+    .item-content a {
+      color: #006400;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .item-content a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    /* Festive touches */
+    .snowflake {
+      position: fixed;
+      top: -10px;
+      font-size: 1.5rem;
+      color: #fff;
+      user-select: none;
+      pointer-events: none;
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎄 My Christmas Wish List</h1>
+  </header>
+  <div class="container">
+    <!-- Item 1 -->
+    <div class="item">
+      <img src="https://images-na.ssl-images-amazon.com/images/I/…B09TLCRGMN…jpg" alt="HyperX Mouse">
+      <div class="item-content">
+        <h2>HyperX Mouse</h2>
+        <p>A high-performance gaming mouse I’ve had my eye on.</p>
+        <p><a href="https://www.amazon.com/gp/product/B09TLCRGMN/ref=sw_img_1?smid=ATVPDKIKX0DER&psc=1" target="_blank">View it on Amazon</a></p>
+      </div>
+    </div>
+    <!-- Item 2 -->
+    <div class="item">
+      <img src="https://www.pacsun.com/dw/image/v2/…/0131454210179_color_001_front.jpg" alt="Dylan Baggy Jeans Black">
+      <div class="item-content">
+        <h2>PACSUN Dylan Baggy Jeans (Vintage Wash Black)</h2>
+        <p>Baggy black jeans — perfect fit for a relaxed look.</p>
+        <p><a href="https://www.pacsun.com/pacsun/dylan-baggy-jeans-vintage-wash-black-0131454210179.html?dwvar_0131454210179_color=001&tileCgid=mens" target="_blank">View on PACSUN</a></p>
+      </div>
+    </div>
+    <!-- Item 3 -->
+    <div class="item">
+      <img src="https://www.pacsun.com/dw/image/v2/…/0097603260641_color_052_front.jpg" alt="McGregor Frontline T-Shirt">
+      <div class="item-content">
+        <h2>PACSUN McGregor Frontline T-Shirt</h2>
+        <p>A cool graphic tee featuring the McGregor design.</p>
+        <p><a href="https://www.pacsun.com/ufc/conor-mcgregor-frontline-t-shirt-0097603260641.html?dwvar_0097603260641_color=052&tileCgid=mens-tops" target="_blank">View on PACSUN</a></p>
+      </div>
+    </div>
+    <!-- Item 4 -->
+    <div class="item">
+      <img src="https://oldnavy.gap.com/dw/image/v2/…/564240002_main.jpg" alt="Dark Gray Sweatshirt">
+      <div class="item-content">
+        <h2>Dark Gray Sweatshirt</h2>
+        <p>A comfy dark gray sweatshirt — cozy and stylish for winter.</p>
+        <p><a href="https://oldnavy.gap.com/browse/product.do?pid=564240002&vid=1&pcid=1031099&cid=1031099&nav=meganav%3AMen%3A%3A#pdp-page-content" target="_blank">View on Old Navy</a></p>
+      </div>
+    </div>
+  </div>
+  <footer>
+    Made with ❤️ by me — let’s hope Santa checks this list! 🎅
+  </footer>
+
+  <!-- Snowflake animation script -->
+  <script>
+    function createSnowflake() {
+      const snowflake = document.createElement('div');
+      snowflake.classList.add('snowflake');
+      snowflake.textContent = '❄';
+      snowflake.style.left = Math.random() * 100 + 'vw';
+      snowflake.style.opacity = Math.random();
+      snowflake.style.fontSize = (Math.random() * 1.5 + 0.5) + 'rem';
+      document.body.appendChild(snowflake);
+      setTimeout(() => {
+        snowflake.remove();
+      }, 10000);
+    }
+    setInterval(createSnowflake, 300);
+  </script>
+</body>
+</html>
