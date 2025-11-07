@@ -1,118 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>🎄 My Christmas List</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎄 Owen’s Christmas Wishlist 🎁</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
     body {
-      background: #f8f9fa;
-      font-family: Arial, sans-serif;
-      color: #333;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #b30000, #004d00);
+      color: #fff;
       margin: 0;
       padding: 0;
-    }
-    header {
-      background: #006400;
-      color: white;
-      text-align: center;
-      padding: 2rem 1rem;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-    .container {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-    .item {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      background: white;
-      margin-bottom: 1.5rem;
-      overflow: hidden;
-      transition: transform .3s, box-shadow .3s;
+      min-height: 100vh;
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: center;
     }
-    .item:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    }
-    .item img {
-      max-width: 200px;
-      width:100%;
-      object-fit: cover;
-    }
-    .item-content {
-      padding: 1rem;
-      flex: 1;
-      min-width: 200px;
-    }
-    .item-content h2 {
-      margin-top: 0;
-      font-size: 1.5rem;
-    }
-    .item-content p {
-      margin: .5rem 0;
-    }
-    .item-content a {
-      color: #006400;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .item-content a:hover {
-      text-decoration: underline;
-    }
-    footer {
+
+    header {
       text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      color: #555;
+      padding: 2rem 1rem 1rem;
     }
-    .snowflake {
-      position: fixed;
-      top: -10px;
-      font-size: 1.5rem;
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      color: #ffd;
+      font-size: 1.1rem;
+    }
+
+    .wishlist {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      width: 90%;
+      max-width: 1100px;
+      margin-top: 2rem;
+    }
+
+    .item {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 1rem;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .item:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .item img {
+      width: 100%;
+      border-radius: 12px;
+      max-height: 220px;
+      object-fit: cover;
+      margin-bottom: 0.75rem;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    }
+
+    .item h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .item a {
+      text-decoration: none;
       color: #fff;
-      user-select: none;
-      pointer-events: none;
-      animation: fall linear infinite;
+      background: #ff3333;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      display: inline-block;
+      transition: background 0.3s;
     }
-    @keyframes fall {
-      to {
-        transform: translateY(110vh) rotate(360deg);
-      }
+
+    .item a:hover {
+      background: #00cc44;
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding: 1rem;
+      text-align: center;
+      color: #eee;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>🎄 My Christmas Wish List</h1>
+    <h1>🎁 Owen’s Christmas Wishlist 🎄</h1>
+    <p>Here’s what I’m hoping for this Christmas!</p>
   </header>
-  <div class="container">
+
+  <section class="wishlist">
     <div class="item">
-      <img src="https://m.media-amazon.com/images/I/61K6LRuR3CL._AC_SL1500_.jpg" alt="HyperX Mouse">
-      <div class="item-content">
-        <h2>HyperX Mouse</h2>
-        <p>High-performance gaming mouse I’ve been wanting!</p>
-        <p><a href="https://www.amazon.com/gp/product/B09TLCRGMN/ref=sw_img_1?smid=ATVPDKIKX0DER&psc=1" target="_blank">View on Amazon</a></p>
-      </div>
+      <img src="0b1a613e-c5ba-47a6-9fd4-d32b0a8386b5.png" alt="HyperX Mouse">
+      <h2>HyperX Mouse</h2>
+      <a href="https://www.amazon.com/gp/product/B09TLCRGMN/ref=sw_img_1?smid=ATVPDKIKX0DER&psc=1" target="_blank">View Item</a>
     </div>
 
     <div class="item">
-      <img src="https://www.pacsun.com/on/demandware.static/-/Sites-pacsun-Library/default/dw0c15e6b8/images/2024/0131454210179_001_main.jpg" alt="Baggy Black Jeans">
-      <div class="item-content">
-        <h2>Pacsun Baggy Black Jeans</h2>
-        <p>Perfect baggy jeans with a clean, vintage wash.</p>
-        <p><a href="https://www.pacsun.com/pacsun/dylan-baggy-jeans-vintage-wash-black-0131454210179.html?dwvar_0131454210179_color=001&tileCgid=mens" target="_blank">View on PacSun</a></p>
-      </div>
+      <img src="1a8e5f58-dcf7-401a-b273-d28cb2ec4363.png" alt="Pacsun Baggy Jeans">
+      <h2>Pacsun Baggy Black Jeans</h2>
+      <a href="https://www.pacsun.com/pacsun/dylan-baggy-jeans-vintage-wash-black-0131454210179.html?dwvar_0131454210179_color=001&tileCgid=mens" target="_blank">View Item</a>
     </div>
 
     <div class="item">
-      <img src="https://www.pacsun.com/on/demandware.static/-/Sites-pacsun-Library/default/dw88fbeaf7/images/2024/0097603260641_052_main.jpg" alt="McGregor Shirt">
-      <div class="item-content">
-        <h2>McGregor Frontline T-Shirt</h2>
-        <p>UFC-inspired graphic tee — looks sick.</p>
-        <p><a href="https://www.pacsun.com/ufc/conor-mcgregor-frontline-t-shirt-0097603260641.html?dwvar_0097603260641_color=052&tileCgid=mens-top
+      <img src="31ae7975-dfdb-4585-aab6-382b0a90237f.png" alt="McGregor Shirt">
+      <h2>McGregor T-Shirt</h2>
+      <a href="https://www.pacsun.com/ufc/conor-mcgregor-frontline-t-shirt-0097603260641.html?dwvar_0097603260641_color=052&tileCgid=mens-tops" target="_blank">View Item</a>
+    </div>
+
+    <div class="item">
+      <img src="9a9d1192-5094-4d03-baad-a78b0dc91e26.png" alt="Dark Gray Sweatshirt">
+      <h2>Dark Gray Sweatshirt</h2>
+      <a href="https://oldnavy.gap.com/browse/product.do?pid=564240002&vid=1&pcid=1031099&cid=1031099&nav=meganav%3AMen%3A%3A#pdp-page-content" target="_blank">View Item</a>
+    </div>
+  </section>
+
+  <footer>
+    Made with ❤️ and holiday spirit by Owen 🎅
+  </footer>
+</body>
+</html>
