@@ -1,189 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Owen’s 2025 Christmas Wishlist 🎁</title>
+
   <style>
-    /* --- GENERAL STYLES --- */
+    /* ---------- Fonts & reset ---------- */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+    * { box-sizing: border-box; }
+    html,body { height:100%; margin:0; padding:0; font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+
+    /* ---------- Page background ---------- */
     body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(180deg, #0a0f2c, #1e335c);
-      color: white;
-      overflow-x: hidden;
-      position: relative;
-      min-height: 100vh;
+      background: radial-gradient(ellipse at 10% 10%, rgba(127,201,255,0.08), transparent 10%),
+                  linear-gradient(180deg,#07102a 0%, #153a61 45%, #1e335c 100%);
+      color:#eaf6ff;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      padding-bottom:3.5rem;
+      overflow-x:hidden;
     }
 
     header {
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #fff;
-      text-shadow: 0 0 20px #9fdcff, 0 0 10px #4fc3f7;
+      margin-top:28px;
+      text-align:center;
+      color:#e6f8ff;
+      text-shadow: 0 6px 24px rgba(79,170,255,0.08), 0 1px 0 rgba(255,255,255,0.02);
+    }
+    header h1 {
+      font-size:clamp(1.6rem, 3vw, 2.6rem);
+      margin:0;
+      letter-spacing:0.6px;
+    }
+    header p {
+      margin:0.35rem 0 0;
+      color:rgba(230,248,255,0.9);
+      font-size:0.95rem;
+      opacity:0.95;
     }
 
-    /* --- SNOW ANIMATION --- */
-    .snowflake {
-      position: fixed;
-      top: 0;
-      z-index: 1000;
-      color: #fff;
-      font-size: 1em;
-      animation: fall 10s linear infinite;
-      opacity: 0.8;
+    /* ---------- container grid ---------- */
+    .container {
+      width:100%;
+      max-width:1200px;
+      padding:1.25rem;
+      margin-top:18px;
     }
 
-    @keyframes fall {
-      0% { transform: translateY(-10vh) translateX(0); }
-      100% { transform: translateY(100vh) translateX(20px); }
+    .grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap:18px;
     }
 
-    /* --- GRID --- */
-    .wishlist {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      padding: 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
+    /* ---------- card ---------- */
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border-radius:14px;
+      padding:14px;
+      box-shadow: 0 6px 20px rgba(2,18,40,0.45), inset 0 1px 0 rgba(255,255,255,0.02);
+      transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s ease;
+      overflow:hidden;
+      position:relative;
+      border:1px solid rgba(255,255,255,0.04);
+      text-align:center;
     }
 
-    /* --- ITEM CARDS --- */
-    .item {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(8px);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      text-align: center;
-      padding: 1rem;
+    .card:hover {
+      transform: translateY(-10px) scale(1.01);
+      box-shadow: 0 18px 50px rgba(47,130,255,0.14);
     }
 
-    .item:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 0 25px #9fdcff;
+    .card .media {
+      width:100%;
+      height:170px;
+      border-radius:10px;
+      overflow:hidden;
+      margin-bottom:10px;
+      background:linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.05));
+      display:flex;
+      align-items:center;
+      justify-content:center;
     }
 
-    .item img {
-      width: 100%;
-      border-radius: 10px;
-      max-height: 220px;
-      object-fit: cover;
+    .card img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
     }
 
-    .item h3 {
-      margin: 0.8rem 0 0.5rem;
-      font-size: 1.2rem;
+    .title {
+      font-size:1rem;
+      font-weight:600;
+      margin:8px 0 4px;
+      color:#eaf6ff;
     }
 
-    .item a {
-      display: inline-block;
-      margin-top: 0.5rem;
-      padding: 0.6rem 1.2rem;
-      color: #fff;
-      background: linear-gradient(90deg, #0099ff, #66ccff);
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: background 0.3s ease, transform 0.2s ease;
-    }
-
-    .item a:hover {
-      background: linear-gradient(90deg, #00ccff, #99e6ff);
-      transform: scale(1.05);
-    }
-
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      font-size: 0.9rem;
-      color: #cce6ff;
-      margin-top: 2rem;
-    }
-  </style>
-</head>
-
-<body>
-  <header>🎁 Owen’s 2025 Christmas Wishlist 🎄</header>
-
-  <!-- Snowflakes -->
-  <div class="snowflakes" aria-hidden="true">
-    <div class="snowflake">❅</div>
-    <div class="snowflake">❆</div>
-    <div class="snowflake">❅</div>
-    <div class="snowflake">❆</div>
-    <div class="snowflake">❅</div>
-  </div>
-
-  <!-- Wishlist Items -->
-  <section class="wishlist">
-    <!-- HyperX Mouse -->
-    <div class="item">
-      <img src="https://placehold.co/400x250?text=HyperX+Mouse+Image" alt="HyperX Mouse">
-      <h3>HyperX Pulsefire Mouse</h3>
-      <a href="https://www.amazon.com/gp/product/B09TLCRGMN/ref=sw_img_1?smid=ATVPDKIKX0DER&psc=1" target="_blank">View Item</a>
-    </div>
-
-    <!-- Pacsun Jeans -->
-    <div class="item">
-      <img src="https://placehold.co/400x250?text=Pacsun+Jeans" alt="Pacsun Baggy Black Jeans">
-      <h3>Pacsun Dylan Baggy Jeans (Black, 30x32)</h3>
-      <a href="https://www.pacsun.com/pacsun/dylan-baggy-jeans-vintage-wash-black-0131454210179.html?dwvar_0131454210179_color=001&tileCgid=mens" target="_blank">View Item</a>
-    </div>
-
-    <!-- McGregor Shirt -->
-    <div class="item">
-      <img src="https://placehold.co/400x250?text=McGregor+Shirt" alt="McGregor Shirt">
-      <h3>UFC Conor McGregor Frontline Tee</h3>
-      <a href="https://www.pacsun.com/ufc/conor-mcgregor-frontline-t-shirt-0097603260641.html?dwvar_0097603260641_color=052&tileCgid=mens-tops" target="_blank">View Item</a>
-    </div>
-
-    <!-- Old Navy Hoodie -->
-    <div class="item">
-      <img src="https://placehold.co/400x250?text=Old+Navy+Sweatshirt" alt="Dark Gray Sweatshirt">
-      <h3>Old Navy Dark Gray Sweatshirt (Large)</h3>
-      <a href="https://oldnavy.gap.com/browse/product.do?pid=564240002&vid=1&pcid=1031099&cid=1031099" target="_blank">View Item</a>
-    </div>
-
-    <!-- Glock 43x -->
-    <div class="item">
-      <img src="https://placehold.co/400x250?text=Glock+43X+Image" alt="Glock 43X">
-      <h3>Glock 43X MOS</h3>
-      <a href="https://us.glock.com/en/pistols/g43x-mos" target="_blank">View Item</a>
-    </div>
-
-    <!-- H&M Beige Cargo Pants -->
-    <div class="item">
-      <img src="https://placehold.co/400x250?text=Beige+Cargo+Pants" alt="H&M Cargo Pants">
-      <h3>H&M Beige Loose Fit Cargo Pants (Small)</h3>
-      <a href="https://www2.hm.com/en_us/productpage.1300095002.html" target="_blank">View Item</a>
-    </div>
-
-    <!-- Hollister Dodge Hoodie -->
-    <div class="item">
-      <img src="https://placehold.co/400x250?text=Dodge+Viper+Hoodie" alt="Dodge Hoodie">
-      <h3>Boxy Dodge Viper Graphic Zip-Up Hoodie (Large)</h3>
-      <a href="https://www.hollisterco.com/shop/us/p/dodge-hellcat-graphic-hoodie-61593820?categoryId=12572" target="_blank">View Item</a>
-    </div>
-
-    <!-- ASICS Gel-1130 -->
-    <div class="item">
-      <img src="https://placehold.co/400x250?text=ASICS+Gel-1130" alt="ASICS Gel-1130">
-      <h3>ASICS Gel-1130 White Cloud Grey (Size 11.5)</h3>
-      <a href="https://stockx.com/asics-gel-1130-white-cloud-grey" target="_blank">View Item</a>
-    </div>
-
-    <!-- Placeholder for future items -->
-    <div class="item">
-      <img src="https://placehold.co/400x250?text=Your+Next+Gift+Here!" alt="Placeholder">
-      <h3>Coming Soon 🎅</h3>
-      <a href="#">Add Link</a>
-    </div>
-  </section>
-
-  <footer>🎄 Made by Owen · Last updated December 2025</footer>
-</body>
-</html>
+    .meta {
+      font-size:0.9rem;
+      color: rgba(230,248,255,0.9);
+      margin-bottom:8px
