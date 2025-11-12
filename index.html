@@ -103,4 +103,237 @@
     .meta {
       font-size:0.9rem;
       color: rgba(230,248,255,0.9);
-      margin-bottom:8px
+      margin-bottom:8px;
+    }
+
+    .btn {
+      display:inline-block;
+      padding:0.55rem 1.1rem;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:700;
+      font-size:0.9rem;
+      color:#012233;
+      background: linear-gradient(90deg,#bfe9ff,#66d4ff);
+      box-shadow: 0 6px 20px rgba(30,150,255,0.09);
+      transition: transform .12s ease, box-shadow .18s ease;
+    }
+
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(30,150,255,0.14); }
+
+    /* ---------- sparkle effect (on hover) ---------- */
+    .sparkles {
+      pointer-events:none;
+      position:absolute;
+      inset:0;
+      display:block;
+      opacity:0;
+      transition: opacity .22s ease;
+    }
+    .card:hover .sparkles { opacity:1; }
+
+    .sparkles .s {
+      width:8px; height:8px; position:absolute; border-radius:50%;
+      background:linear-gradient(90deg,#fff,#9fe6ff);
+      transform:translateY(0) scale(.6) rotate(0deg);
+      box-shadow: 0 0 12px rgba(160,240,255,0.65);
+      animation: sparkle 900ms linear infinite;
+      filter: blur(.2px);
+    }
+    .sparkles .s.s1 { left:12%; top:12%; animation-delay: 0ms; }
+    .sparkles .s.s2 { left:78%; top:18%; animation-delay: 120ms; }
+    .sparkles .s.s3 { left:30%; top:68%; animation-delay: 240ms; }
+    .sparkles .s.s4 { left:86%; top:72%; animation-delay: 360ms; }
+
+    @keyframes sparkle {
+      0% { transform: translateY(0) scale(.6) rotate(0); opacity:0.0; }
+      30% { transform: translateY(-10px) scale(1.05) rotate(8deg); opacity:1; }
+      70% { transform: translateY(-24px) scale(.8) rotate(-4deg); opacity:0.7; }
+      100% { transform: translateY(-40px) scale(.4) rotate(0); opacity:0; }
+    }
+
+    /* ---------- snow (background) ---------- */
+    .snow {
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:1;
+      overflow:hidden;
+    }
+    .snow i {
+      position:absolute;
+      color: #eaf6ff;
+      opacity:0.9;
+      font-size: 12px;
+      animation: fall linear infinite;
+    }
+    .snow i.n1 { left:5%; animation-duration: 18s; top:-5vh; font-size:10px; }
+    .snow i.n2 { left:22%; animation-duration: 14s; top:-10vh; font-size:12px; animation-delay:2s; }
+    .snow i.n3 { left:45%; animation-duration: 20s; top:-8vh; font-size:11px; animation-delay:1s; }
+    .snow i.n4 { left:67%; animation-duration: 16s; top:-3vh; font-size:13px; animation-delay:0.7s; }
+    .snow i.n5 { left:88%; animation-duration: 22s; top:-12vh; font-size:9px; animation-delay:3s; }
+
+    @keyframes fall {
+      0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity:0.9; }
+      100% { transform: translateY(120vh) translateX(30px) rotate(360deg); opacity:0.4; }
+    }
+
+    /* ---------- footer ---------- */
+    footer {
+      width:100%;
+      max-width:1200px;
+      margin:28px auto 46px;
+      padding:12px 18px;
+      text-align:center;
+      color:rgba(220,240,255,0.85);
+      font-size:0.92rem;
+      border-radius:10px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+      box-shadow: 0 8px 30px rgba(5,20,40,0.35);
+    }
+
+    /* ---------- responsive tweaks ---------- */
+    @media (max-width:560px){
+      .card .media { height:140px; }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="snow" aria-hidden="true">
+    <i class="n1">❄</i>
+    <i class="n2">❅</i>
+    <i class="n3">❆</i>
+    <i class="n4">❄</i>
+    <i class="n5">❅</i>
+  </div>
+
+  <header>
+    <h1>🎁 Owen’s 2025 Christmas Wishlist</h1>
+    <p>Modern winter vibes — click any item to view it (images placeholder until you upload yours)</p>
+  </header>
+
+  <main class="container" role="main">
+    <section class="grid" aria-label="Wishlist items">
+
+      <!-- 1 HyperX -->
+      <article class="card" aria-labelledby="t1">
+        <div class="media">
+          <img src="https://placehold.co/600x380?text=HyperX+Mouse+Image" alt="HyperX Pulsefire Mouse placeholder">
+        </div>
+        <div class="title" id="t1">HyperX Pulsefire Mouse</div>
+        <div class="meta">Preferred: gaming mouse</div>
+        <a class="btn" href="https://www.amazon.com/gp/product/B09TLCRGMN/ref=sw_img_1?smid=ATVPDKIKX0DER&psc=1" target="_blank" rel="noopener">View Item</a>
+
+        <div class="sparkles" aria-hidden="true">
+          <span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span>
+        </div>
+      </article>
+
+      <!-- 2 Pacsun Jeans -->
+      <article class="card" aria-labelledby="t2">
+        <div class="media">
+          <img src="https://placehold.co/600x380?text=Pacsun+Jeans+30x32" alt="Pacsun Dylan Baggy Jeans placeholder">
+        </div>
+        <div class="title" id="t2">Pacsun Dylan Baggy Jeans — 30x32</div>
+        <div class="meta">Vintage black, baggy fit</div>
+        <a class="btn" href="https://www.pacsun.com/pacsun/dylan-baggy-jeans-vintage-wash-black-0131454210179.html?dwvar_0131454210179_color=001&tileCgid=mens" target="_blank" rel="noopener">View Item</a>
+
+        <div class="sparkles" aria-hidden="true">
+          <span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span>
+        </div>
+      </article>
+
+      <!-- 3 McGregor shirt -->
+      <article class="card" aria-labelledby="t3">
+        <div class="media">
+          <img src="https://placehold.co/600x380?text=McGregor+Shirt" alt="McGregor shirt placeholder">
+        </div>
+        <div class="title" id="t3">UFC Conor McGregor Frontline Tee</div>
+        <div class="meta">Pacsun graphic tee</div>
+        <a class="btn" href="https://www.pacsun.com/ufc/conor-mcgregor-frontline-t-shirt-0097603260641.html?dwvar_0097603260641_color=052&tileCgid=mens-tops" target="_blank" rel="noopener">View Item</a>
+
+        <div class="sparkles" aria-hidden="true">
+          <span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span>
+        </div>
+      </article>
+
+      <!-- 4 Old Navy Sweatshirt -->
+      <article class="card" aria-labelledby="t4">
+        <div class="media">
+          <img src="https://placehold.co/600x380?text=Old+Navy+Sweatshirt+Large" alt="Old Navy dark gray sweatshirt placeholder">
+        </div>
+        <div class="title" id="t4">Old Navy Dark Gray Sweatshirt — Large</div>
+        <div class="meta">Comfy winter hoodie</div>
+        <a class="btn" href="https://oldnavy.gap.com/browse/product.do?pid=564240002&vid=1&pcid=1031099&cid=1031099" target="_blank" rel="noopener">View Item</a>
+
+        <div class="sparkles" aria-hidden="true">
+          <span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span>
+        </div>
+      </article>
+
+      <!-- 5 Glock 43X -->
+      <article class="card" aria-labelledby="t5">
+        <div class="media">
+          <img src="https://placehold.co/600x380?text=Glock+43X+MOS" alt="Glock 43X placeholder">
+        </div>
+        <div class="title" id="t5">Glock 43X MOS</div>
+        <div class="meta">Glock official site</div>
+        <a class="btn" href="https://us.glock.com/en/pistols/g43x-mos" target="_blank" rel="noopener">View Item</a>
+
+        <div class="sparkles" aria-hidden="true">
+          <span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span>
+        </div>
+      </article>
+
+      <!-- 6 H&M Beige Cargo Pants -->
+      <article class="card" aria-labelledby="t6">
+        <div class="media">
+          <img src="https://placehold.co/600x380?text=Beige+Cargo+Pants+Small" alt="Beige cargo pants placeholder">
+        </div>
+        <div class="title" id="t6">H&M Beige Loose Fit Cargo Pants — Small</div>
+        <div class="meta">H&M product page</div>
+        <a class="btn" href="https://www2.hm.com/en_us/productpage.1300095002.html" target="_blank" rel="noopener">View Item</a>
+
+        <div class="sparkles" aria-hidden="true">
+          <span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span>
+        </div>
+      </article>
+
+      <!-- 7 Hollister Dodge Hoodie -->
+      <article class="card" aria-labelledby="t7">
+        <div class="media">
+          <img src="https://placehold.co/600x380?text=Dodge+Viper+Hoodie+Large" alt="Dodge hoodie placeholder">
+        </div>
+        <div class="title" id="t7">Boxy Dodge Viper Graphic Zip-Up Hoodie — Large</div>
+        <div class="meta">Hollister product</div>
+        <a class="btn" href="https://www.hollisterco.com/shop/us/p/dodge-hellcat-graphic-hoodie-61593820?categoryId=12572" target="_blank" rel="noopener">View Item</a>
+
+        <div class="sparkles" aria-hidden="true">
+          <span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span>
+        </div>
+      </article>
+
+      <!-- 8 ASICS Gel-1130 -->
+      <article class="card" aria-labelledby="t8">
+        <div class="media">
+          <img src="https://placehold.co/600x380?text=ASICS+Gel-1130+Size+11.5" alt="ASICS Gel-1130 placeholder">
+        </div>
+        <div class="title" id="t8">ASICS Gel-1130 — White Cloud Grey (11.5)</div>
+        <div class="meta">StockX listing</div>
+        <a class="btn" href="https://stockx.com/asics-gel-1130-white-cloud-grey" target="_blank" rel="noopener">View Item</a>
+
+        <div class="sparkles" aria-hidden="true">
+          <span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span>
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <footer>
+    🎄 Made by Owen · Last updated December 2025
+  </footer>
+
+</body>
+</html>
