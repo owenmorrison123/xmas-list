@@ -86,8 +86,22 @@
       object-fit:cover;
     }
 
-    .title { font-size:1.05rem; font-weight:600; margin:4px 0 3px; }
-    .price { font-size:0.95rem; font-weight:600; color:#b2e5ff; margin-bottom:10px; }
+    .title { 
+      font-size:1.05rem; 
+      font-weight:600; 
+      margin:4px 0 3px; 
+    }
+    .price { 
+      font-size:0.95rem; 
+      font-weight:600; 
+      color:#b2e5ff; 
+      margin-bottom:10px; 
+    }
+    .note {
+      font-size:0.85rem;
+      opacity:0.75;
+      margin-bottom:10px;
+    }
 
     .btn {
       display:inline-block;
@@ -103,7 +117,6 @@
     }
     .btn:hover { transform:translateY(-3px); box-shadow:0 12px 32px rgba(80,160,255,0.38); }
 
-    /* sparkles */
     .sparkles { pointer-events:none; position:absolute; inset:0; opacity:0; transition:0.2s; }
     .card:hover .sparkles { opacity:1; }
     .sparkles .s {
@@ -124,7 +137,6 @@
       100% { transform:translateY(-30px) scale(.4); opacity:0; }
     }
 
-    /* snow */
     .snow i {
       position:fixed;
       top:-10vh;
@@ -150,7 +162,6 @@
 
 <body>
 
-  <!-- snow -->
   <div class="snow">
     <i style="left:5%; font-size:12px; animation-duration:18s;">❄</i>
     <i style="left:22%; font-size:14px; animation-duration:14s; animation-delay:1s;">❅</i>
@@ -167,7 +178,7 @@
   <main class="container">
     <section class="grid">
 
-      <!-- HyperX Mouse -->
+      <!-- 1 HyperX Mouse -->
       <article class="card">
         <div class="media"><img src="mouse.jpg"></div>
         <div class="title">HyperX Pulsefire Mouse</div>
@@ -176,7 +187,7 @@
         <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
       </article>
 
-      <!-- Pacsun Jeans -->
+      <!-- 2 Pacsun Jeans -->
       <article class="card">
         <div class="media"><img src="pacsun black jeans.webp"></div>
         <div class="title">Pacsun Dylan Baggy Jeans (30x32)</div>
@@ -185,7 +196,7 @@
         <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
       </article>
 
-      <!-- McGregor Shirt -->
+      <!-- 3 McGregor Shirt -->
       <article class="card">
         <div class="media"><img src="mcgregor shirt.jpg"></div>
         <div class="title">UFC Conor McGregor Tee</div>
@@ -194,7 +205,7 @@
         <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
       </article>
 
-      <!-- Grey Sweatshirt -->
+      <!-- 4 Grey Sweatshirt -->
       <article class="card">
         <div class="media"><img src="grey sweatshirt.avif"></div>
         <div class="title">Old Navy Dark Gray Sweatshirt (Large)</div>
@@ -203,7 +214,7 @@
         <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
       </article>
 
-      <!-- Glock 43X -->
+      <!-- 5 Glock 43X -->
       <article class="card">
         <div class="media"><span style="opacity:0.5; font-size:0.9rem;">No Image</span></div>
         <div class="title">Glock 43X MOS</div>
@@ -212,7 +223,7 @@
         <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
       </article>
 
-      <!-- Beige Cargo Pants -->
+      <!-- 6 Beige Cargo Pants -->
       <article class="card">
         <div class="media"><img src="beige cargo.avif"></div>
         <div class="title">H&M Beige Cargo Pants (Small)</div>
@@ -221,7 +232,7 @@
         <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
       </article>
 
-      <!-- Toyota Supra Hoodie -->
+      <!-- 7 Supra Hoodie -->
       <article class="card">
         <div class="media"><img src="supra shirt.avif"></div>
         <div class="title">Boxy Toyota Supra Zip-Up Hoodie</div>
@@ -230,7 +241,7 @@
         <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
       </article>
 
-      <!-- Washed Painter Jeans -->
+      <!-- 8 Washed Baggy Painter Jeans -->
       <article class="card">
         <div class="media"><img src="washed baggy jeans.avif"></div>
         <div class="title">Hollister Super Baggy Painter Jeans</div>
@@ -239,7 +250,7 @@
         <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
       </article>
 
-      <!-- ASICS -->
+      <!-- 9 ASICS -->
       <article class="card">
         <div class="media"><img src="asics.avif"></div>
         <div class="title">ASICS Gel-1130 (11.5)</div>
@@ -248,11 +259,30 @@
         <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
       </article>
 
+      <!-- 10 Balrog Hoodie -->
+      <article class="card">
+        <div class="media"><img src="balrog.webp"></div>
+        <div class="title">Balrog Hoodie (Large)</div>
+        <div class="price">$64.00</div>
+        <a class="btn" href="https://www.culturekings.com/products/73studio-x-lord-of-the-rings-the-balrog-premium-hoodie-washed-charcoal" target="_blank">View Item</a>
+        <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
+      </article>
+
+      <!-- 11 Bad Boy Extreme -->
+      <article class="card">
+        <div class="media"><img src="bad boy.jpg"></div>
+        <div class="title">Carolina Herrera Bad Boy Extreme</div>
+        <div class="price">~$100</div>
+        <div class="note">Not sure yet — need to smell it first.</div>
+        <a class="btn" href="https://www.fragrantica.com/perfume/Carolina-Herrera/Bad-Boy-Extreme-78562.html" target="_blank">View Item</a>
+        <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
+      </article>
+
     </section>
   </main>
 
   <footer>
-    🎄 Made by Owen · Last updated December 2025
+    🎄 Made by Owen · Last updated November 2025
   </footer>
 
 </body>
