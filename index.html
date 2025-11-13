@@ -8,282 +8,777 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
     * { box-sizing: border-box; }
-    html,body { height:100%; margin:0; padding:0; font-family: 'Inter', sans-serif; }
+
+    :root {
+      --bg-dark: #05070c;
+      --bg-deep-green: #061317;
+      --accent-gold: #f6d37a;
+      --accent-red: #b12035;
+      --text-main: #f3f5ff;
+      --text-muted: #c6c9d9;
+      --card-bg: rgba(15, 18, 30, 0.96);
+      --card-border: rgba(255, 255, 255, 0.04);
+      --glow-gold: 0 0 25px rgba(246, 211, 122, 0.45);
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(177, 32, 53, 0.55), transparent 50%),
+        radial-gradient(circle at top right, rgba(24, 99, 69, 0.75), transparent 55%),
+        linear-gradient(180deg, #020308 0%, #040713 45%, #020308 100%);
+      color: var(--text-main);
+      overflow-x: hidden;
+    }
 
     body {
-      background: radial-gradient(ellipse at top left, rgba(127,201,255,0.10), transparent 45%),
-                  linear-gradient(180deg, #07102a, #153a61, #1e335c);
-      color:#eaf6ff;
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      padding-bottom:3rem;
-      overflow-x:hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      min-height: 100vh;
+      padding-bottom: 3rem;
+      position: relative;
+    }
+
+    /* cinematic overlay vignette */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(255,255,255,0.05), transparent 55%),
+        radial-gradient(circle at 80% 0%, rgba(255,255,255,0.04), transparent 55%);
+      mix-blend-mode: screen;
+      opacity: 0.9;
+      z-index: 0;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.6) 100%);
+      z-index: 1;
+    }
+
+    main, header, footer {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* snow + embers */
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .flake, .ember {
+      position: absolute;
+      user-select: none;
+      font-size: 11px;
+      opacity: 0.85;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+
+    .flake {
+      color: #f6f7ff;
+      animation-name: snowFall;
+    }
+
+    .ember {
+      width: 3px;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(to top, rgba(255, 120, 70, 0.1), rgba(255, 190, 120, 0.9));
+      box-shadow: 0 0 10px rgba(255, 180, 120, 0.9);
+      animation-name: emberRise;
+    }
+
+    @keyframes snowFall {
+      0% { transform: translate3d(0, -10vh, 0); opacity: 0; }
+      10% { opacity: 0.9; }
+      100% { transform: translate3d(20px, 120vh, 0); opacity: 0; }
+    }
+
+    @keyframes emberRise {
+      0% { transform: translate3d(0, 110vh, 0); opacity: 0; }
+      10% { opacity: 0.9; }
+      100% { transform: translate3d(-10px, -10vh, 0); opacity: 0; }
+    }
+
+    /* layout */
+    .wrap {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 0;
     }
 
     header {
-      margin-top:30px;
-      text-align:center;
-    }
-    header h1 {
-      font-size:2.4rem;
-      font-weight:700;
-      letter-spacing:1px;
-      text-shadow:0 0 18px rgba(150,220,255,0.4);
-      margin-bottom:6px;
-    }
-    header p { 
-      font-size:0.95rem; 
-      opacity:0.85;
-      margin:0;
+      padding-top: 2.4rem;
     }
 
-    .container {
-      width:100%;
-      max-width:1200px;
-      padding:1.2rem;
-      margin-top:20px;
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; text-align: center; }
+    }
+
+    .hero-left h1 {
+      font-size: clamp(2.1rem, 3.2vw, 2.9rem);
+      margin: 0 0 0.6rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-left h1 span {
+      color: var(--accent-gold);
+      text-shadow: var(--glow-gold);
+    }
+
+    .hero-sub {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      max-width: 32rem;
+      line-height: 1.6;
+    }
+
+    .hero-tagline {
+      margin-top: 0.8rem;
+      font-size: 0.92rem;
+      color: #ffd7d7;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.1rem;
+    }
+
+    .chip {
+      font-size: 0.78rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(5,10,25,0.9);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--text-muted);
+    }
+
+    .chip-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffd27f 0, #ff9347 45%, transparent 70%);
+      box-shadow: 0 0 10px rgba(255, 160, 80, 0.7);
+    }
+
+    .hero-right {
+      justify-self: end;
+    }
+
+    .hero-panel {
+      border-radius: 20px;
+      padding: 1.1rem 1.2rem 1.3rem;
+      background:
+        radial-gradient(circle at top left, rgba(246, 211, 122, 0.18), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(177, 32, 53, 0.18), transparent 55%),
+        rgba(5, 8, 18, 0.96);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow:
+        0 18px 50px rgba(0,0,0,0.9),
+        0 0 40px rgba(246, 211, 122, 0.08);
+      max-width: 320px;
+      margin-left: auto;
+    }
+
+    .badge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.8rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .badge {
+      padding: 0.22rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(246,211,122,0.7);
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.7rem;
+    }
+
+    .badge-small {
+      padding: 0.1rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.2);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .hero-panel h2 {
+      font-size: 1.1rem;
+      margin: 0.1rem 0 0.3rem;
+    }
+
+    .hero-panel p {
+      margin: 0.1rem 0;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .hero-panel strong {
+      color: var(--accent-gold);
+    }
+
+    /* wishlist grid */
+    .section-title {
+      margin: 2.2rem 0 0.6rem;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: rgba(237,240,255,0.9);
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
     }
 
     .grid {
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap:22px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
     }
 
     .card {
-      background: rgba(255,255,255,0.05);
-      border:1px solid rgba(255,255,255,0.08);
-      border-radius:14px;
-      padding:14px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 12px 12px 14px;
       box-shadow:
-        0 6px 20px rgba(0,0,0,0.4),
-        inset 0 1px 3px rgba(255,255,255,0.05);
-      text-align:center;
-      transition:0.25s ease;
-      position:relative;
-      overflow:hidden;
+        0 10px 35px rgba(0,0,0,0.85),
+        0 0 26px rgba(15,25,60,0.75);
+      text-align: left;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      position: relative;
+      overflow: hidden;
     }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at top left, rgba(246,211,122,0.22), transparent 55%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
     .card:hover {
       transform: translateY(-10px) scale(1.01);
-      box-shadow:0 18px 40px rgba(90,180,255,0.22);
+      box-shadow:
+        0 20px 50px rgba(0,0,0,0.95),
+        0 0 50px rgba(246, 211, 122, 0.32);
+      border-color: rgba(246, 211, 122, 0.5);
     }
+
+    .card:hover::before { opacity: 1; }
 
     .media {
-      width:100%;
-      height:180px;
-      border-radius:10px;
-      overflow:hidden;
-      margin-bottom:12px;
-      background:rgba(255,255,255,0.04);
-      display:flex;
-      justify-content:center;
-      align-items:center;
-    }
-    .media img {
-      width:100%; height:100%;
-      object-fit:cover;
+      width: 100%;
+      height: 180px;
+      border-radius: 11px;
+      overflow: hidden;
+      margin-bottom: 10px;
+      background: radial-gradient(circle at 20% 0%, rgba(255,255,255,0.08), transparent 55%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
     }
 
-    .title { 
-      font-size:1.05rem; 
-      font-weight:600; 
-      margin:4px 0 3px; 
+    .media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.03);
+      transition: transform 0.35s ease;
     }
-    .price { 
-      font-size:0.95rem; 
-      font-weight:600; 
-      color:#b2e5ff; 
-      margin-bottom:10px; 
+
+    .card:hover .media img {
+      transform: scale(1.08);
     }
+
+    .media .no-image {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      opacity: 0.85;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .pill-row {
+      position: absolute;
+      inset: auto 10px 10px 10px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 0.7rem;
+    }
+
+    .pill {
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: rgba(5, 10, 25, 0.82);
+      border: 1px solid rgba(255,255,255,0.3);
+      backdrop-filter: blur(4px);
+      color: #f7f7ff;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+
+    .pill-tag {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .pill-price {
+      color: var(--accent-gold);
+      font-weight: 600;
+    }
+
+    .title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      margin: 4px 0 3px;
+    }
+
+    .details {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
     .note {
-      font-size:0.85rem;
-      opacity:0.75;
-      margin-bottom:10px;
+      font-size: 0.8rem;
+      color: #ffdfb8;
+      margin-bottom: 8px;
+      font-style: italic;
+    }
+
+    .btn-row {
+      margin-top: 4px;
+      display: flex;
+      justify-content: flex-start;
     }
 
     .btn {
-      display:inline-block;
-      padding:8px 16px;
-      border-radius:999px;
-      background:linear-gradient(90deg,#bfe9ff,#66d4ff);
-      color:#022235;
-      font-weight:700;
-      font-size:0.9rem;
-      text-decoration:none;
-      transition:0.2s;
-      box-shadow:0 6px 22px rgba(80,160,255,0.28);
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #f6d37a, #f0904a);
+      color: #220a06;
+      font-weight: 700;
+      font-size: 0.82rem;
+      text-decoration: none;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 6px 22px rgba(246, 211, 122, 0.4);
+      transition: transform 0.16s ease, box-shadow 0.18s ease;
     }
-    .btn:hover { transform:translateY(-3px); box-shadow:0 12px 32px rgba(80,160,255,0.38); }
 
-    .sparkles { pointer-events:none; position:absolute; inset:0; opacity:0; transition:0.2s; }
-    .card:hover .sparkles { opacity:1; }
-    .sparkles .s {
-      width:8px; height:8px; border-radius:50%;
-      background:linear-gradient(#fff,#c8efff);
-      position:absolute;
-      animation:spark 1s infinite linear;
-      box-shadow:0 0 12px rgba(200,240,255,0.8);
+    .btn span.icon {
+      font-size: 0.9rem;
     }
-    .s.s1 { left:10%; top:12%; }
-    .s.s2 { left:78%; top:18%; animation-delay:0.15s; }
-    .s.s3 { left:30%; top:70%; animation-delay:0.25s; }
-    .s.s4 { left:86%; top:72%; animation-delay:0.35s; }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 32px rgba(246, 211, 122, 0.65);
+    }
+
+    .sparkles {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .card:hover .sparkles { opacity: 1; }
+
+    .sparkles .s {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #fff 0, #ffe7b5 40%, transparent 70%);
+      position: absolute;
+      box-shadow: 0 0 14px rgba(255,227,173,0.9);
+      animation: spark 1.15s linear infinite;
+    }
+
+    .s.s1 { left: 9%; top: 18%; }
+    .s.s2 { left: 82%; top: 20%; animation-delay: 0.15s; }
+    .s.s3 { left: 25%; top: 76%; animation-delay: 0.3s; }
+    .s.s4 { left: 88%; top: 74%; animation-delay: 0.45s; }
 
     @keyframes spark {
-      0% { transform:translateY(0) scale(.7); opacity:0; }
-      40% { transform:translateY(-14px) scale(1); opacity:1; }
-      100% { transform:translateY(-30px) scale(.4); opacity:0; }
-    }
-
-    .snow i {
-      position:fixed;
-      top:-10vh;
-      color:#eaf6ff;
-      opacity:0.8;
-      animation:fall linear infinite;
-      user-select:none;
-    }
-    @keyframes fall {
-      0% { transform:translateY(-10vh) rotate(0); }
-      100% { transform:translateY(120vh) rotate(360deg); }
+      0%   { transform: translateY(0) scale(.7); opacity: 0; }
+      30%  { transform: translateY(-14px) scale(1); opacity: 1; }
+      100% { transform: translateY(-28px) scale(.4); opacity: 0; }
     }
 
     footer {
-      margin-top:40px;
-      padding:14px;
-      text-align:center;
-      font-size:0.9rem;
-      opacity:0.75;
+      margin-top: 40px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      padding: 1rem 0 2rem;
+    }
+
+    @media (max-width: 640px) {
+      .media { height: 160px; }
     }
   </style>
 </head>
 
 <body>
 
-  <div class="snow">
-    <i style="left:5%; font-size:12px; animation-duration:18s;">❄</i>
-    <i style="left:22%; font-size:14px; animation-duration:14s; animation-delay:1s;">❅</i>
-    <i style="left:48%; font-size:11px; animation-duration:20s; animation-delay:2s;">❆</i>
-    <i style="left:70%; font-size:13px; animation-duration:17s;">❄</i>
-    <i style="left:88%; font-size:10px; animation-duration:22s; animation-delay:3s;">❅</i>
+  <!-- snow + embers -->
+  <div class="particles">
+    <!-- snowflakes -->
+    <span class="flake" style="left:6%; animation-duration:16s; animation-delay:0s;">❄</span>
+    <span class="flake" style="left:22%; animation-duration:19s; animation-delay:1s;">❅</span>
+    <span class="flake" style="left:48%; animation-duration:21s; animation-delay:2s;">❆</span>
+    <span class="flake" style="left:71%; animation-duration:18s; animation-delay:0.5s;">❄</span>
+    <span class="flake" style="left:88%; animation-duration:23s; animation-delay:1.7s;">❅</span>
+    <!-- embers -->
+    <span class="ember" style="left:18%; animation-duration:15s; animation-delay:0.4s;"></span>
+    <span class="ember" style="left:55%; animation-duration:18s; animation-delay:1.2s;"></span>
+    <span class="ember" style="left:82%; animation-duration:16s; animation-delay:0.9s;"></span>
   </div>
 
-  <header>
-    <h1>🎁 Owen’s 2025 Christmas Wishlist</h1>
-    <p>Everything I’m hoping for this year — click to view.</p>
-  </header>
+  <div class="wrap">
+    <header>
+      <div class="hero">
+        <div class="hero-left">
+          <h1><span>Owen’s</span> 2025 Christmas Wishlist</h1>
+          <p class="hero-sub">
+            A cinematic list of everything I’m hoping for this year — from sneakers and streetwear to tech and a maybe-fragrance. 
+            Built like a real site so it’s easy to browse and shop.
+          </p>
+          <p class="hero-tagline">
+            Dark, cozy, and just a little over the top. 🎄
+          </p>
+          <div class="chip-row">
+            <div class="chip"><span class="chip-dot"></span> Curated fits & gear</div>
+            <div class="chip"><span class="chip-dot"></span> Sizes & prices included</div>
+            <div class="chip"><span class="chip-dot"></span> Wishlist · Winter 2025</div>
+          </div>
+        </div>
 
-  <main class="container">
-    <section class="grid">
+        <div class="hero-right">
+          <div class="hero-panel">
+            <div class="badge-row">
+              <span class="badge">Wishlist 2025</span>
+              <span class="badge-small">11 items · 1 page</span>
+            </div>
+            <h2>Holiday Drop List</h2>
+            <p><strong>Streetwear · Sneakers · Tech · Fragrance</strong></p>
+            <p>
+              Each card shows brand, size, price, and a direct link. No guessing, no searching — just click and go.
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
 
-      <!-- 1 HyperX Mouse -->
-      <article class="card">
-        <div class="media"><img src="mouse.jpg"></div>
-        <div class="title">HyperX Pulsefire Mouse</div>
-        <div class="price">$49.99</div>
-        <a class="btn" href="https://www.amazon.com/gp/product/B09TLCRGMN" target="_blank">View Item</a>
-        <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
-      </article>
+    <main>
+      <h2 class="section-title">Featured Items</h2>
+      <p class="section-subtitle">
+        Scroll through the grid to see all the gifts — hover for that extra holiday glow.
+      </p>
 
-      <!-- 2 Pacsun Jeans -->
-      <article class="card">
-        <div class="media"><img src="pacsun black jeans.webp"></div>
-        <div class="title">Pacsun Dylan Baggy Jeans (30x32)</div>
-        <div class="price">$49.95</div>
-        <a class="btn" href="https://www.pacsun.com/pacsun/dylan-baggy-jeans-vintage-wash-black-0131454210179.html" target="_blank">View Item</a>
-        <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
-      </article>
+      <section class="grid" aria-label="Wishlist items">
 
-      <!-- 3 McGregor Shirt -->
-      <article class="card">
-        <div class="media"><img src="mcgregor shirt.jpg"></div>
-        <div class="title">UFC Conor McGregor Tee</div>
-        <div class="price">$32.95</div>
-        <a class="btn" href="https://www.pacsun.com/ufc/conor-mcgregor-frontline-t-shirt-0097603260641.html" target="_blank">View Item</a>
-        <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
-      </article>
+        <!-- 1 HyperX Mouse -->
+        <article class="card">
+          <div class="media">
+            <img src="mouse.jpg" alt="HyperX Pulsefire Mouse">
+            <div class="pill-row">
+              <div class="pill">
+                <span class="pill-tag">Tech</span>
+                <span class="pill-price">$49.99</span>
+              </div>
+              <div class="pill">HyperX</div>
+            </div>
+          </div>
+          <div class="title">HyperX Pulsefire Mouse</div>
+          <div class="details">Lightweight gaming mouse for smoother aim and cleaner setup.</div>
+          <div class="btn-row">
+            <a class="btn" href="https://www.amazon.com/gp/product/B09TLCRGMN" target="_blank" rel="noopener">
+              <span class="icon">🛒</span><span>View on Amazon</span>
+            </a>
+          </div>
+          <div class="sparkles">
+            <span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span>
+          </div>
+        </article>
 
-      <!-- 4 Grey Sweatshirt -->
-      <article class="card">
-        <div class="media"><img src="grey sweatshirt.avif"></div>
-        <div class="title">Old Navy Dark Gray Sweatshirt (Large)</div>
-        <div class="price">$29.99</div>
-        <a class="btn" href="https://oldnavy.gap.com/browse/product.do?pid=564240002" target="_blank">View Item</a>
-        <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
-      </article>
+        <!-- 2 PacSun Jeans -->
+        <article class="card">
+          <div class="media">
+            <img src="pacsun black jeans.webp" alt="Pacsun Dylan Baggy Jeans">
+            <div class="pill-row">
+              <div class="pill">
+                <span class="pill-tag">Bottoms</span>
+                <span class="pill-price">$49.95</span>
+              </div>
+              <div class="pill">Size 30×32</div>
+            </div>
+          </div>
+          <div class="title">PacSun Dylan Baggy Jeans (Black)</div>
+          <div class="details">Vintage wash, baggy fit — perfect everyday jeans with a worn-in look.</div>
+          <div class="btn-row">
+            <a class="btn" href="https://www.pacsun.com/pacsun/dylan-baggy-jeans-vintage-wash-black-0131454210179.html" target="_blank" rel="noopener">
+              <span class="icon">🛒</span><span>View on PacSun</span>
+            </a>
+          </div>
+          <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
+        </article>
 
-      <!-- 5 Glock 43X -->
-      <article class="card">
-        <div class="media"><span style="opacity:0.5; font-size:0.9rem;">No Image</span></div>
-        <div class="title">Glock 43X MOS</div>
-        <div class="price">Check retailer price</div>
-        <a class="btn" href="https://us.glock.com/en/pistols/g43x-mos" target="_blank">View Item</a>
-        <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
-      </article>
+        <!-- 3 McGregor Tee -->
+        <article class="card">
+          <div class="media">
+            <img src="mcgregor shirt.jpg" alt="McGregor graphic tee">
+            <div class="pill-row">
+              <div class="pill">
+                <span class="pill-tag">Top</span>
+                <span class="pill-price">$32.95</span>
+              </div>
+              <div class="pill">UFC · PacSun</div>
+            </div>
+          </div>
+          <div class="title">UFC Conor McGregor Tee</div>
+          <div class="details">Black graphic tee with McGregor front graphic — goes with basically everything.</div>
+          <div class="btn-row">
+            <a class="btn" href="https://www.pacsun.com/ufc/conor-mcgregor-frontline-t-shirt-0097603260641.html" target="_blank" rel="noopener">
+              <span class="icon">🛒</span><span>View on PacSun</span>
+            </a>
+          </div>
+          <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
+        </article>
 
-      <!-- 6 Beige Cargo Pants -->
-      <article class="card">
-        <div class="media"><img src="beige cargo.avif"></div>
-        <div class="title">H&M Beige Cargo Pants (Small)</div>
-        <div class="price">$39.99</div>
-        <a class="btn" href="https://www2.hm.com/en_us/productpage.1300095002.html" target="_blank">View Item</a>
-        <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
-      </article>
+        <!-- 4 Grey Sweatshirt -->
+        <article class="card">
+          <div class="media">
+            <img src="grey sweatshirt.avif" alt="Dark gray sweatshirt">
+            <div class="pill-row">
+              <div class="pill">
+                <span class="pill-tag">Top</span>
+                <span class="pill-price">$29.99</span>
+              </div>
+              <div class="pill">Large · Old Navy</div>
+            </div>
+          </div>
+          <div class="title">Dark Gray Sweatshirt (Large)</div>
+          <div class="details">Simple, clean, and comfy — perfect everyday hoodie for winter.</div>
+          <div class="btn-row">
+            <a class="btn" href="https://oldnavy.gap.com/browse/product.do?pid=564240002" target="_blank" rel="noopener">
+              <span class="icon">🛒</span><span>View on Old Navy</span>
+            </a>
+          </div>
+          <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
+        </article>
 
-      <!-- 7 Supra Hoodie -->
-      <article class="card">
-        <div class="media"><img src="supra shirt.avif"></div>
-        <div class="title">Boxy Toyota Supra Zip-Up Hoodie</div>
-        <div class="price">$59.95</div>
-        <a class="btn" href="https://www.hollisterco.com/shop/us/p/boxy-zip-up-ford-mustang-graphic-hoodie-61529819" target="_blank">View Item</a>
-        <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
-      </article>
+        <!-- 5 Glock 43X -->
+        <article class="card">
+          <div class="media">
+            <div class="no-image">No image · just the link</div>
+            <div class="pill-row">
+              <div class="pill">
+                <span class="pill-tag">Gear</span>
+                <span class="pill-price">Varies</span>
+              </div>
+            </div>
+          </div>
+          <div class="title">Glock 43X MOS</div>
+          <div class="details">Compact 9mm platform — details and pricing depend on dealer.</div>
+          <div class="btn-row">
+            <a class="btn" href="https://us.glock.com/en/pistols/g43x-mos" target="_blank" rel="noopener">
+              <span class="icon">🌐</span><span>View on Glock</span>
+            </a>
+          </div>
+          <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
+        </article>
 
-      <!-- 8 Washed Baggy Painter Jeans -->
-      <article class="card">
-        <div class="media"><img src="washed baggy jeans.avif"></div>
-        <div class="title">Hollister Super Baggy Painter Jeans</div>
-        <div class="price">$59.95</div>
-        <a class="btn" href="https://www.hollisterco.com/shop/us/p/medium-wash-baggy-jeans-59875347" target="_blank">View Item</a>
-        <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
-      </article>
+        <!-- 6 Beige Cargo Pants -->
+        <article class="card">
+          <div class="media">
+            <img src="beige cargo.avif" alt="Beige cargo pants">
+            <div class="pill-row">
+              <div class="pill">
+                <span class="pill-tag">Bottoms</span>
+                <span class="pill-price">$39.99</span>
+              </div>
+              <div class="pill">Small · H&M</div>
+            </div>
+          </div>
+          <div class="title">Beige Loose Fit Cargo Pants</div>
+          <div class="details">Laid-back fit in a clean beige color — good with sneakers or boots.</div>
+          <div class="btn-row">
+            <a class="btn" href="https://www2.hm.com/en_us/productpage.1300095002.html" target="_blank" rel="noopener">
+              <span class="icon">🛒</span><span>View on H&M</span>
+            </a>
+          </div>
+          <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
+        </article>
 
-      <!-- 9 ASICS -->
-      <article class="card">
-        <div class="media"><img src="asics.avif"></div>
-        <div class="title">ASICS Gel-1130 (11.5)</div>
-        <div class="price">~$90 (varies)</div>
-        <a class="btn" href="https://stockx.com/asics-gel-1130-white-cloud-grey" target="_blank">View Item</a>
-        <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
-      </article>
+        <!-- 7 Supra Hoodie -->
+        <article class="card">
+          <div class="media">
+            <img src="supra shirt.avif" alt="Toyota Supra hoodie">
+            <div class="pill-row">
+              <div class="pill">
+                <span class="pill-tag">Hoodie</span>
+                <span class="pill-price">$59.95</span>
+              </div>
+              <div class="pill">Toyota Supra · Large</div>
+            </div>
+          </div>
+          <div class="title">Boxy Toyota Supra Zip-Up Hoodie</div>
+          <div class="details">Washed look with Supra graphics — perfect statement hoodie.</div>
+          <div class="btn-row">
+            <a class="btn" href="https://www.hollisterco.com/shop/us/p/boxy-zip-up-ford-mustang-graphic-hoodie-61529819" target="_blank" rel="noopener">
+              <span class="icon">🛒</span><span>View on Hollister</span>
+            </a>
+          </div>
+          <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
+        </article>
 
-      <!-- 10 Balrog Hoodie -->
-      <article class="card">
-        <div class="media"><img src="balrog.webp"></div>
-        <div class="title">Balrog Hoodie (Large)</div>
-        <div class="price">$64.00</div>
-        <a class="btn" href="https://www.culturekings.com/products/73studio-x-lord-of-the-rings-the-balrog-premium-hoodie-washed-charcoal" target="_blank">View Item</a>
-        <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
-      </article>
+        <!-- 8 Washed Baggy Painter Jeans -->
+        <article class="card">
+          <div class="media">
+            <img src="washed baggy jeans.avif" alt="Washed baggy painter jeans">
+            <div class="pill-row">
+              <div class="pill">
+                <span class="pill-tag">Bottoms</span>
+                <span class="pill-price">$59.95</span>
+              </div>
+              <div class="pill">Super baggy · Hollister</div>
+            </div>
+          </div>
+          <div class="title">Medium Wash Super Baggy Painter Jeans</div>
+          <div class="details">Wide, relaxed fit with a painter vibe — perfect with hoodies and sneakers.</div>
+          <div class="btn-row">
+            <a class="btn" href="https://www.hollisterco.com/shop/us/p/medium-wash-baggy-jeans-59875347" target="_blank" rel="noopener">
+              <span class="icon">🛒</span><span>View on Hollister</span>
+            </a>
+          </div>
+          <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
+        </article>
 
-      <!-- 11 Bad Boy Extreme -->
-      <article class="card">
-        <div class="media"><img src="bad boy.jpg"></div>
-        <div class="title">Carolina Herrera Bad Boy Extreme</div>
-        <div class="price">~$100</div>
-        <div class="note">Not sure yet — need to smell it first.</div>
-        <a class="btn" href="https://www.fragrantica.com/perfume/Carolina-Herrera/Bad-Boy-Extreme-78562.html" target="_blank">View Item</a>
-        <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
-      </article>
+        <!-- 9 ASICS -->
+        <article class="card">
+          <div class="media">
+            <img src="asics.avif" alt="ASICS Gel-1130 White Cloud Grey">
+            <div class="pill-row">
+              <div class="pill">
+                <span class="pill-tag">Shoes</span>
+                <span class="pill-price">~$90</span>
+              </div>
+              <div class="pill">Gel-1130 · 11.5</div>
+            </div>
+          </div>
+          <div class="title">ASICS Gel-1130 White Cloud Grey</div>
+          <div class="details">Retro running style with neutral colors — easy to wear with any fit.</div>
+          <div class="btn-row">
+            <a class="btn" href="https://stockx.com/asics-gel-1130-white-cloud-grey" target="_blank" rel="noopener">
+              <span class="icon">🛒</span><span>View on StockX</span>
+            </a>
+          </div>
+          <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
+        </article>
 
-    </section>
-  </main>
+        <!-- 10 Balrog Hoodie -->
+        <article class="card">
+          <div class="media">
+            <img src="balrog.webp" alt="Balrog hoodie">
+            <div class="pill-row">
+              <div class="pill">
+                <span class="pill-tag">Hoodie</span>
+                <span class="pill-price">$64.00</span>
+              </div>
+              <div class="pill">Balrog · Large</div>
+            </div>
+          </div>
+          <div class="title">Balrog Premium Hoodie (Large)</div>
+          <div class="details">Lord of the Rings Balrog print on washed charcoal — heavy, premium-feel hoodie.</div>
+          <div class="btn-row">
+            <a class="btn" href="https://www.culturekings.com/products/73studio-x-lord-of-the-rings-the-balrog-premium-hoodie-washed-charcoal" target="_blank" rel="noopener">
+              <span class="icon">🛒</span><span>View on Culture Kings</span>
+            </a>
+          </div>
+          <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
+        </article>
 
-  <footer>
-    🎄 Made by Owen · Last updated November 2025
-  </footer>
+        <!-- 11 Bad Boy Extreme -->
+        <article class="card">
+          <div class="media">
+            <img src="bad boy.jpg" alt="Bad Boy Extreme fragrance bottle">
+            <div class="pill-row">
+              <div class="pill">
+                <span class="pill-tag">Fragrance</span>
+                <span class="pill-price">~$100</span>
+              </div>
+              <div class="pill">Carolina Herrera</div>
+            </div>
+          </div>
+          <div class="title">Carolina Herrera Bad Boy Extreme</div>
+          <div class="details">Dark vanilla, cocoa, & spice vibe in a lightning bolt bottle.</div>
+          <div class="note">Not sure yet — need to smell it first.</div>
+          <div class="btn-row">
+            <a class="btn" href="https://www.fragrantica.com/perfume/Carolina-Herrera/Bad-Boy-Extreme-78562.html" target="_blank" rel="noopener">
+              <span class="icon">🌐</span><span>See on Fragrantica</span>
+            </a>
+          </div>
+          <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
+        </article>
+
+      </section>
+    </main>
+
+    <footer>
+      🎄 Made by Owen · Cinematic Holiday Edition · Last updated December 2025
+    </footer>
+  </div>
 
 </body>
 </html>
