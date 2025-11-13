@@ -6,307 +6,243 @@
   <title>Owen’s 2025 Christmas Wishlist 🎁</title>
 
   <style>
-    /* ---------- Fonts & reset ---------- */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
     * { box-sizing: border-box; }
-    html,body { height:100%; margin:0; padding:0; font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+    html,body { height:100%; margin:0; padding:0; font-family: 'Inter', sans-serif; }
 
-    /* ---------- Page background ---------- */
     body {
-      background: radial-gradient(ellipse at 10% 10%, rgba(127,201,255,0.08), transparent 10%),
-                  linear-gradient(180deg,#07102a 0%, #153a61 45%, #1e335c 100%);
+      background: radial-gradient(ellipse at top left, rgba(127,201,255,0.10), transparent 45%),
+                  linear-gradient(180deg, #07102a, #153a61, #1e335c);
       color:#eaf6ff;
       min-height:100vh;
       display:flex;
       flex-direction:column;
       align-items:center;
-      padding-bottom:3.5rem;
+      padding-bottom:3rem;
       overflow-x:hidden;
     }
 
     header {
-      margin-top:28px;
+      margin-top:30px;
       text-align:center;
-      color:#e6f8ff;
-      text-shadow: 0 6px 24px rgba(79,170,255,0.08), 0 1px 0 rgba(255,255,255,0.02);
     }
     header h1 {
-      font-size:clamp(1.6rem, 3vw, 2.6rem);
-      margin:0;
-      letter-spacing:0.6px;
+      font-size:2.4rem;
+      font-weight:700;
+      letter-spacing:1px;
+      text-shadow:0 0 18px rgba(150,220,255,0.4);
+      margin-bottom:6px;
     }
-    header p {
-      margin:0.35rem 0 0;
-      color:rgba(230,248,255,0.9);
-      font-size:0.95rem;
-      opacity:0.95;
+    header p { 
+      font-size:0.95rem; 
+      opacity:0.85;
+      margin:0;
     }
 
-    /* ---------- container grid ---------- */
     .container {
       width:100%;
       max-width:1200px;
-      padding:1.25rem;
-      margin-top:18px;
+      padding:1.2rem;
+      margin-top:20px;
     }
 
     .grid {
       display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap:18px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap:22px;
     }
 
-    /* ---------- card ---------- */
     .card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      background: rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
       border-radius:14px;
       padding:14px;
-      box-shadow: 0 6px 20px rgba(2,18,40,0.45), inset 0 1px 0 rgba(255,255,255,0.02);
-      transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s ease;
-      overflow:hidden;
-      position:relative;
-      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:
+        0 6px 20px rgba(0,0,0,0.4),
+        inset 0 1px 3px rgba(255,255,255,0.05);
       text-align:center;
+      transition:0.25s ease;
+      position:relative;
+      overflow:hidden;
     }
-
     .card:hover {
       transform: translateY(-10px) scale(1.01);
-      box-shadow: 0 18px 50px rgba(47,130,255,0.14);
+      box-shadow:0 18px 40px rgba(90,180,255,0.22);
     }
 
-    .card .media {
+    .media {
       width:100%;
-      height:170px;
+      height:180px;
       border-radius:10px;
       overflow:hidden;
-      margin-bottom:10px;
-      background:linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.05));
+      margin-bottom:12px;
+      background:rgba(255,255,255,0.04);
       display:flex;
-      align-items:center;
       justify-content:center;
+      align-items:center;
     }
-
-    .card img {
-      width:100%;
-      height:100%;
+    .media img {
+      width:100%; height:100%;
       object-fit:cover;
-      display:block;
     }
 
-    .title {
-      font-size:1rem;
-      font-weight:600;
-      margin:8px 0 4px;
-      color:#eaf6ff;
-    }
-
-    .meta {
-      font-size:0.9rem;
-      color: rgba(230,248,255,0.9);
-      margin-bottom:0px;
-    }
-
-    .price {
-      font-size:0.95rem;
-      color:#aee0ff;
-      margin-bottom:10px;
-      font-weight:600;
-    }
+    .title { font-size:1.05rem; font-weight:600; margin:4px 0 3px; }
+    .price { font-size:0.95rem; font-weight:600; color:#b2e5ff; margin-bottom:10px; }
 
     .btn {
       display:inline-block;
-      padding:0.55rem 1.1rem;
+      padding:8px 16px;
       border-radius:999px;
-      text-decoration:none;
+      background:linear-gradient(90deg,#bfe9ff,#66d4ff);
+      color:#022235;
       font-weight:700;
       font-size:0.9rem;
-      color:#012233;
-      background: linear-gradient(90deg,#bfe9ff,#66d4ff);
-      box-shadow: 0 6px 20px rgba(30,150,255,0.09);
-      transition: transform .12s ease, box-shadow .18s ease;
+      text-decoration:none;
+      transition:0.2s;
+      box-shadow:0 6px 22px rgba(80,160,255,0.28);
     }
+    .btn:hover { transform:translateY(-3px); box-shadow:0 12px 32px rgba(80,160,255,0.38); }
 
-    .btn:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(30,150,255,0.14); }
-
-    /* ---------- sparkle effect (on hover) ---------- */
-    .sparkles {
-      pointer-events:none;
-      position:absolute;
-      inset:0;
-      display:block;
-      opacity:0;
-      transition: opacity .22s ease;
-    }
+    /* sparkles */
+    .sparkles { pointer-events:none; position:absolute; inset:0; opacity:0; transition:0.2s; }
     .card:hover .sparkles { opacity:1; }
-
     .sparkles .s {
-      width:8px; height:8px; position:absolute; border-radius:50%;
-      background:linear-gradient(90deg,#fff,#9fe6ff);
-      transform:translateY(0) scale(.6) rotate(0deg);
-      box-shadow: 0 0 12px rgba(160,240,255,0.65);
-      animation: sparkle 900ms linear infinite;
-      filter: blur(.2px);
-    }
-    .sparkles .s.s1 { left:12%; top:12%; animation-delay: 0ms; }
-    .sparkles .s.s2 { left:78%; top:18%; animation-delay: 120ms; }
-    .sparkles .s.s3 { left:30%; top:68%; animation-delay: 240ms; }
-    .sparkles .s.s4 { left:86%; top:72%; animation-delay: 360ms; }
-
-    @keyframes sparkle {
-      0% { transform: translateY(0) scale(.6) rotate(0); opacity:0.0; }
-      30% { transform: translateY(-10px) scale(1.05) rotate(8deg); opacity:1; }
-      70% { transform: translateY(-24px) scale(.8) rotate(-4deg); opacity:0.7; }
-      100% { transform: translateY(-40px) scale(.4) rotate(0); opacity:0; }
-    }
-
-    /* ---------- snow (background) ---------- */
-    .snow {
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      z-index:1;
-      overflow:hidden;
-    }
-    .snow i {
+      width:8px; height:8px; border-radius:50%;
+      background:linear-gradient(#fff,#c8efff);
       position:absolute;
-      color: #eaf6ff;
-      opacity:0.9;
-      font-size: 12px;
-      animation: fall linear infinite;
+      animation:spark 1s infinite linear;
+      box-shadow:0 0 12px rgba(200,240,255,0.8);
     }
-    .snow i.n1 { left:5%; animation-duration: 18s; top:-5vh; font-size:10px; }
-    .snow i.n2 { left:22%; animation-duration: 14s; top:-10vh; font-size:12px; animation-delay:2s; }
-    .snow i.n3 { left:45%; animation-duration: 20s; top:-8vh; font-size:11px; animation-delay:1s; }
-    .snow i.n4 { left:67%; animation-duration: 16s; top:-3vh; font-size:13px; animation-delay:0.7s; }
-    .snow i.n5 { left:88%; animation-duration: 22s; top:-12vh; font-size:9px; animation-delay:3s; }
+    .s.s1 { left:10%; top:12%; }
+    .s.s2 { left:78%; top:18%; animation-delay:0.15s; }
+    .s.s3 { left:30%; top:70%; animation-delay:0.25s; }
+    .s.s4 { left:86%; top:72%; animation-delay:0.35s; }
 
+    @keyframes spark {
+      0% { transform:translateY(0) scale(.7); opacity:0; }
+      40% { transform:translateY(-14px) scale(1); opacity:1; }
+      100% { transform:translateY(-30px) scale(.4); opacity:0; }
+    }
+
+    /* snow */
+    .snow i {
+      position:fixed;
+      top:-10vh;
+      color:#eaf6ff;
+      opacity:0.8;
+      animation:fall linear infinite;
+      user-select:none;
+    }
     @keyframes fall {
-      0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity:0.9; }
-      100% { transform: translateY(120vh) translateX(30px) rotate(360deg); opacity:0.4; }
+      0% { transform:translateY(-10vh) rotate(0); }
+      100% { transform:translateY(120vh) rotate(360deg); }
     }
 
-    /* ---------- footer ---------- */
     footer {
-      width:100%;
-      max-width:1200px;
-      margin:28px auto 46px;
-      padding:12px 18px;
+      margin-top:40px;
+      padding:14px;
       text-align:center;
-      color:rgba(220,240,255,0.85);
-      font-size:0.92rem;
-      border-radius:10px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
-      box-shadow: 0 8px 30px rgba(5,20,40,0.35);
-    }
-
-    @media (max-width:560px){
-      .card .media { height:140px; }
+      font-size:0.9rem;
+      opacity:0.75;
     }
   </style>
 </head>
 
 <body>
-  <div class="snow" aria-hidden="true">
-    <i class="n1">❄</i>
-    <i class="n2">❅</i>
-    <i class="n3">❆</i>
-    <i class="n4">❄</i>
-    <i class="n5">❅</i>
+
+  <!-- snow -->
+  <div class="snow">
+    <i style="left:5%; font-size:12px; animation-duration:18s;">❄</i>
+    <i style="left:22%; font-size:14px; animation-duration:14s; animation-delay:1s;">❅</i>
+    <i style="left:48%; font-size:11px; animation-duration:20s; animation-delay:2s;">❆</i>
+    <i style="left:70%; font-size:13px; animation-duration:17s;">❄</i>
+    <i style="left:88%; font-size:10px; animation-duration:22s; animation-delay:3s;">❅</i>
   </div>
 
   <header>
     <h1>🎁 Owen’s 2025 Christmas Wishlist</h1>
-    <p>Click any item to view it · Images are live from your GitHub uploads</p>
+    <p>Everything I’m hoping for this year — click to view.</p>
   </header>
 
-  <main class="container" role="main">
-    <section class="grid" aria-label="Wishlist items">
+  <main class="container">
+    <section class="grid">
 
-      <!-- 1 HyperX Mouse -->
+      <!-- HyperX Mouse -->
       <article class="card">
-        <div class="media">
-          <img src="mouse.jpg" alt="HyperX Pulsefire Mouse">
-        </div>
+        <div class="media"><img src="mouse.jpg"></div>
         <div class="title">HyperX Pulsefire Mouse</div>
         <div class="price">$49.99</div>
-        <a class="btn" href="https://www.amazon.com/gp/product/B09TLCRGMN/ref=sw_img_1?smid=ATVPDKIKX0DER&psc=1" target="_blank">View Item</a>
-        <div class="sparkles" aria-hidden="true">
-          <span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span>
-        </div>
+        <a class="btn" href="https://www.amazon.com/gp/product/B09TLCRGMN" target="_blank">View Item</a>
+        <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
       </article>
 
-      <!-- 2 Pacsun Jeans -->
+      <!-- Pacsun Jeans -->
       <article class="card">
-        <div class="media">
-          <img src="pacsun black jeans.webp" alt="Pacsun Baggy Jeans">
-        </div>
+        <div class="media"><img src="pacsun black jeans.webp"></div>
         <div class="title">Pacsun Dylan Baggy Jeans (30x32)</div>
         <div class="price">$49.95</div>
         <a class="btn" href="https://www.pacsun.com/pacsun/dylan-baggy-jeans-vintage-wash-black-0131454210179.html" target="_blank">View Item</a>
         <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
       </article>
 
-      <!-- 3 McGregor Shirt -->
+      <!-- McGregor Shirt -->
       <article class="card">
-        <div class="media">
-          <img src="mcgregor shirt.jpg" alt="McGregor Shirt">
-        </div>
+        <div class="media"><img src="mcgregor shirt.jpg"></div>
         <div class="title">UFC Conor McGregor Tee</div>
         <div class="price">$32.95</div>
         <a class="btn" href="https://www.pacsun.com/ufc/conor-mcgregor-frontline-t-shirt-0097603260641.html" target="_blank">View Item</a>
         <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
       </article>
 
-      <!-- 4 Old Navy Sweatshirt -->
+      <!-- Grey Sweatshirt -->
       <article class="card">
-        <div class="media">
-          <img src="grey sweatshirt.avif" alt="Grey Sweatshirt">
-        </div>
-        <div class="title">Old Navy Gray Sweatshirt (Large)</div>
+        <div class="media"><img src="grey sweatshirt.avif"></div>
+        <div class="title">Old Navy Dark Gray Sweatshirt (Large)</div>
         <div class="price">$29.99</div>
         <a class="btn" href="https://oldnavy.gap.com/browse/product.do?pid=564240002" target="_blank">View Item</a>
         <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
       </article>
 
-      <!-- 5 Glock 43X MOS -->
+      <!-- Glock 43X -->
       <article class="card">
-        <div class="media">
-          <img src="supra shirt.avif" alt="Glock 43X placeholder (replace later if desired)">
-        </div>
+        <div class="media"><span style="opacity:0.5; font-size:0.9rem;">No Image</span></div>
         <div class="title">Glock 43X MOS</div>
         <div class="price">Check retailer price</div>
         <a class="btn" href="https://us.glock.com/en/pistols/g43x-mos" target="_blank">View Item</a>
         <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
       </article>
 
-      <!-- 6 Beige Cargo Pants -->
+      <!-- Beige Cargo Pants -->
       <article class="card">
-        <div class="media">
-          <img src="beige cargo.avif" alt="Beige Cargo Pants">
-        </div>
+        <div class="media"><img src="beige cargo.avif"></div>
         <div class="title">H&M Beige Cargo Pants (Small)</div>
         <div class="price">$39.99</div>
         <a class="btn" href="https://www2.hm.com/en_us/productpage.1300095002.html" target="_blank">View Item</a>
         <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
       </article>
 
-      <!-- 7 Dodge Hoodie -->
+      <!-- Toyota Supra Hoodie -->
       <article class="card">
-        <div class="media">
-          <img src="supra shirt.avif" alt="Dodge Hoodie">
-        </div>
-        <div class="title">Dodge Viper Zip Hoodie (Large)</div>
+        <div class="media"><img src="supra shirt.avif"></div>
+        <div class="title">Boxy Toyota Supra Zip-Up Hoodie</div>
         <div class="price">$59.95</div>
-        <a class="btn" href="https://www.hollisterco.com/shop/us/p/dodge-hellcat-graphic-hoodie-61593820" target="_blank">View Item</a>
+        <a class="btn" href="https://www.hollisterco.com/shop/us/p/boxy-zip-up-ford-mustang-graphic-hoodie-61529819" target="_blank">View Item</a>
         <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
       </article>
 
-      <!-- 8 ASICS Gel-1130 -->
+      <!-- Washed Painter Jeans -->
       <article class="card">
-        <div class="media">
-          <img src="asics.avif" alt="ASICS Gel-1130">
-        </div>
-        <div class="title">ASICS Gel-1130 (White Cloud Grey)</div>
+        <div class="media"><img src="washed baggy jeans.avif"></div>
+        <div class="title">Hollister Super Baggy Painter Jeans</div>
+        <div class="price">$59.95</div>
+        <a class="btn" href="https://www.hollisterco.com/shop/us/p/medium-wash-baggy-jeans-59875347" target="_blank">View Item</a>
+        <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
+      </article>
+
+      <!-- ASICS -->
+      <article class="card">
+        <div class="media"><img src="asics.avif"></div>
+        <div class="title">ASICS Gel-1130 (11.5)</div>
         <div class="price">~$90 (varies)</div>
         <a class="btn" href="https://stockx.com/asics-gel-1130-white-cloud-grey" target="_blank">View Item</a>
         <div class="sparkles"><span class="s s1"></span><span class="s s2"></span><span class="s s3"></span><span class="s s4"></span></div>
